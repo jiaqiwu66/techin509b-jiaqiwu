@@ -20,6 +20,10 @@ def flood_fill(input_board: List[str], old: str, new: str, x: int, y: int) -> Li
     row = len(input_board)
     col = len(input_board[0])
 
+    # ensure the length of each row is same
+    for r in range(1, row):
+        assert len(board[r]) == len(board[0])
+
     board_arr = []
     for line in input_board:
         board_arr.append(list(line))
