@@ -37,6 +37,18 @@ def flood_fill(input_board: List[str], old: str, new: str, x: int, y: int) -> Li
 
 
 def dfs(board_arr: List[List[str]], x: int, y: int, row: int, col: int, old: str, new: str):
+    """
+    Args:
+        board_arr (List[List[str]])
+        x (int): X-coordinate of the flood current point
+        y (int): Y-coordinate of the flood current point
+        row (int): the number of row
+        col (int): the umber of column
+        old (str): Value to be replaced
+        new (str): Value that replaces the old
+    Returns:
+        No returns
+    """
     board_arr[x][y] = new
     for direct in directions:
         x_ = x + direct[0]
@@ -61,6 +73,17 @@ modified_board = flood_fill(input_board=board, old=".", new="~", x=5, y=12)
 for a in modified_board:
     print(a)
 
+expected_output = [
+    "......................",
+    "......##########......",
+    "......#~~~~~~~~#......",
+    "......#~~~~~~~~#......",
+    "......#~~~~~~~~#####..",
+    "....###~~~~~~~~~~~~#..",
+    "....#~~~~~~~~~~~~###..",
+    "....##############....",
+]
+
 # Expected output:
 # ......................
 # ......##########......
@@ -70,3 +93,45 @@ for a in modified_board:
 # ....###~~~~~~~~~~~~#..
 # ....#~~~~~~~~~~~~###..
 # ....##############....
+
+print() 
+
+board_2 = [
+    "...........#..........",
+    "......####...###......",
+    "......#........#......",
+    "......#........#......",
+    "......#........#####..",
+    "....###............#..",
+    "....#............###..",
+    "....##############....",
+]
+
+expected_output_2 = [
+    "~~~~~~~~~~~#~~~~~~~~~~",
+    "~~~~~~####~~~###~~~~~~",
+    "~~~~~~#~~~~~~~~#~~~~~~",
+    "~~~~~~#~~~~~~~~#~~~~~~",
+    "~~~~~~#~~~~~~~~#####~~",
+    "~~~~###~~~~~~~~~~~~#~~",
+    "~~~~#~~~~~~~~~~~~###~~",
+    "~~~~##############~~~~",
+]
+
+# Expected output:
+# ~~~~~~~~~~~#~~~~~~~~~~
+# ~~~~~~####~~~###~~~~~~
+# ~~~~~~#~~~~~~~~#~~~~~~
+# ~~~~~~#~~~~~~~~#~~~~~~
+# ~~~~~~#~~~~~~~~#####~~
+# ~~~~###~~~~~~~~~~~~#~~
+# ~~~~#~~~~~~~~~~~~###~~
+# ~~~~##############~~~~
+
+modified_board_2 = flood_fill(input_board=board_2, old=".", new="~", x=0, y=0)
+
+for a in modified_board_2:
+    print(a)
+
+assert flood_fill(input_board=board, old=".", new="~", x=5, y=12) == expected_output
+assert  flood_fill(input_board=board_2, old=".", new="~", x=0, y=0) == expected_output_2
